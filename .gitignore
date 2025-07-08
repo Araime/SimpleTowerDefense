@@ -3,5 +3,6 @@
 /Packages/
 /ProjectSettings/
 /UserSettings/
+/Temp/
 .vsconfig
 *.sln
