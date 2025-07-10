@@ -27,4 +27,10 @@ public class TowerPoint : MonoBehaviour
     {
         _renderer.material.color = Color.white;
     }
+
+    /// <summary>
+    /// Returns the state of the tower point
+    /// </summary>
+    /// <returns></returns>
+    public bool GetStatus() => _isOccupied;
 }
