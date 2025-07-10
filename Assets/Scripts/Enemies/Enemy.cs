@@ -13,6 +13,15 @@ public class Enemy : MonoBehaviour
 
     private int _currentIndex = 0;
 
+    /// <summary>
+    /// It is triggered when an enemy is spawned.
+    /// </summary>
+    /// <param name="points"></param>
+    public void Init(Transform[] points)
+    {
+        _points = points;
+    }
+
     private void Update()
     {
         Vector3 targetPosition = new Vector3(_points[_currentIndex].position.x, transform.position.y, _points[_currentIndex].position.z);
