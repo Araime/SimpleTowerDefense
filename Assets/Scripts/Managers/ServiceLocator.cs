@@ -2,6 +2,9 @@ using UnityEngine;
 
 using SL = ServiceLocator;
 
+/// <summary>
+/// A “service locator” style singleton can be used to provide access to other, non-singleton scripts
+/// </summary>
 public class ServiceLocator : MonoBehaviour
 {
     public static SL Instance { get; private set; }
