@@ -36,7 +36,7 @@ public class UIManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Returns the state of the Buy Menu
+    /// Returns the menu status
     /// </summary>
     /// <returns></returns>
     public bool GetMenuStatus() => _showMenu;
