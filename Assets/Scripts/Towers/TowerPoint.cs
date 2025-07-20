@@ -12,15 +12,21 @@ public class TowerPoint : MonoBehaviour
 
     void OnMouseOver()
     {
-        if (!_isOccupied)
+        if (!UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
         {
-            _renderer.material.color = Color.green;
+            if (!_isOccupied)
+            {
+                _renderer.material.color = Color.green;
+            }
+            else
+            {
+                _renderer.material.color = Color.yellow;
+            }
         }
         else
         {
-            _renderer.material.color = Color.yellow;
+            _renderer.material.color = Color.white;
         }
-        
     }
 
     void OnMouseExit()

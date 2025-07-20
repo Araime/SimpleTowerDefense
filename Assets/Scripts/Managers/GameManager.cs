@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
 
         if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit))
         {
-            if (hit.collider.CompareTag("TowerPoint"))
+            if (hit.collider.CompareTag("TowerPoint") && !UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
             {
                 if (!hit.collider.GetComponent<TowerPoint>().GetStatus())
                 {
