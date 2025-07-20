@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6672984056092483737}
   - component: {fileID: 7736192034463554390}
   - component: {fileID: 6155036323559972592}
+  - component: {fileID: 5084666001057006784}
   m_Layer: 5
   m_Name: BTN_Close
   m_TagString: UI
@@ -121,6 +122,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5084666001057006784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 486496890125450434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cb672e9ebb4e6b489ad8dee86bf95d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _button: {fileID: 0}
 --- !u!1 &965804236347696129
 GameObject:
   m_ObjectHideFlags: 0
@@ -133,6 +147,7 @@ GameObject:
   - component: {fileID: 949957417141117684}
   - component: {fileID: 6517510239107207605}
   - component: {fileID: 525096217991110693}
+  - component: {fileID: 2572527077439184042}
   m_Layer: 5
   m_Name: BTN_Sell
   m_TagString: UI
@@ -242,6 +257,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2572527077439184042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 965804236347696129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cb672e9ebb4e6b489ad8dee86bf95d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _button: {fileID: 0}
 --- !u!1 &2084047723879023675
 GameObject:
   m_ObjectHideFlags: 0
@@ -251,6 +279,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8925648553566332805}
+  - component: {fileID: 5075626083895064958}
   m_Layer: 5
   m_Name: BuyMenu
   m_TagString: UI
@@ -278,6 +307,22 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &5075626083895064958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2084047723879023675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69f075a6c3b3a094a9c35dab0e3ab126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _buyButton: {fileID: 7327396585466282072}
+  _sellButton: {fileID: 965804236347696129}
+  _upgradeButton: {fileID: 4263715461970409091}
+  _closeButton: {fileID: 486496890125450434}
 --- !u!1 &2484946205236529792
 GameObject:
   m_ObjectHideFlags: 0
@@ -562,6 +607,7 @@ GameObject:
   - component: {fileID: 6477609804900106333}
   - component: {fileID: 5068546304687433155}
   - component: {fileID: 8298261816773023096}
+  - component: {fileID: 9191576154747188933}
   m_Layer: 5
   m_Name: BTN_Upgrade
   m_TagString: UI
@@ -671,6 +717,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &9191576154747188933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4263715461970409091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cb672e9ebb4e6b489ad8dee86bf95d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _button: {fileID: 0}
 --- !u!1 &4426694384868964380
 GameObject:
   m_ObjectHideFlags: 0

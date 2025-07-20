@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
 
                 if (Input.GetMouseButtonDown(0) && !SL.Instance.UIManager.GetMenuStatus())
                 {
-                    SL.Instance.UIManager.CallBuyMenu(hit.collider.transform.position);
+                    SL.Instance.UIManager.CallBuyMenu(Input.mousePosition, hit.collider.GetComponent<TowerPoint>().GetTowerPointStatus());
                 }
                 else if (Input.GetMouseButtonDown(0) && SL.Instance.UIManager.GetMenuStatus())
                 {

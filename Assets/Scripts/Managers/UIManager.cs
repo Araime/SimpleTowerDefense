@@ -11,10 +11,12 @@ public class UIManager : MonoBehaviour
     /// Open the shopping menu
     /// </summary>
     /// <param name="pos"></param>
-    public void CallBuyMenu(Vector3 pos)
+    public void CallBuyMenu(Vector3 pos, bool isOccupied)
     {
-        _buyMenu = Instantiate(_buyMenuPrefab, pos, Quaternion.identity);
+        _buyMenu = Instantiate(_buyMenuPrefab);
         _buyMenu.transform.SetParent(_canvas.transform, false);
+        _buyMenu.transform.SetPositionAndRotation(pos, Quaternion.identity);
+        _buyMenu.GetComponent<BuyMenu>().Init(isOccupied);
         ChangeMenuStatus();
     }
 
