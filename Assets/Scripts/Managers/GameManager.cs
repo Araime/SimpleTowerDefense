@@ -1,5 +1,7 @@
 using UnityEngine;
 
+using SL = ServiceLocator;
+
 public class GameManager : MonoBehaviour
 {
     [SerializeField] Texture2D _cursorGreenTexture;

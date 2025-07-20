@@ -1,5 +1,7 @@
 using UnityEngine;
 
+using SL = ServiceLocator;
+
 public class TowerPoint : MonoBehaviour
 {
     [SerializeField] bool _isOccupied = false;
