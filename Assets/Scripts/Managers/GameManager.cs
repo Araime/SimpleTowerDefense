@@ -4,49 +4,61 @@ using SL = ServiceLocator;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] Texture2D _cursorGreenTexture;
-    [SerializeField] Texture2D _cursorRedTexture;
+    [SerializeField] private Texture2D _cursorGreenTexture;
+    [SerializeField] private Texture2D _cursorRedTexture;
 
-    void Update()
+    private SL _serviceLocator;
+
+    private void Start()
     {
-        RaycastHit hit;
+        _serviceLocator = ServiceLocator.Instance;
+    }
 
-        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit))
+    private void Update()
+    {
+        bool isOverUI = UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject();
+        
+        // Сброс курсора если над UI или если не попали в TowerPoint
+        if (isOverUI || !Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out var hit))
         {
-            if (hit.collider.CompareTag("TowerPoint") && !UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
+            ResetCursor();
+            
+            if (Input.GetMouseButtonDown(0) && !isOverUI)
+                _serviceLocator.UIManager.CloseBuyMenu();
+            
+            return;
+        }
+
+        // Обработка TowerPoint
+        if (hit.collider.CompareTag("TowerPoint"))
+        {
+            bool isOccupied = false;
+            
+            if (hit.collider.TryGetComponent(out TowerPoint towerPoint))
             {
-                if (!hit.collider.GetComponent<TowerPoint>().GetTowerPointStatus())
-                {
-                    Cursor.SetCursor(_cursorGreenTexture, Vector2.zero, CursorMode.Auto);
-                }
+                isOccupied = towerPoint.IsOccupied;
+            }
+            
+            Cursor.SetCursor(isOccupied ? _cursorRedTexture : _cursorGreenTexture, Vector2.zero, CursorMode.Auto);
+            
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (_serviceLocator.UIManager.IsMenuOpen)
+                    _serviceLocator.UIManager.CloseBuyMenu();
                 else
-                {
-                    Cursor.SetCursor(_cursorRedTexture, Vector2.zero, CursorMode.Auto);
-                }
-
-                if (Input.GetMouseButtonDown(0) && !SL.Instance.UIManager.GetMenuStatus())
-                {
-                    SL.Instance.UIManager.CallBuyMenu(Input.mousePosition, hit.collider.GetComponent<TowerPoint>().GetTowerPointStatus());
-                }
-                else if (Input.GetMouseButtonDown(0) && SL.Instance.UIManager.GetMenuStatus())
-                {
-                    SL.Instance.UIManager.CloseBuyMenu();
-                }
-            }
-            else if (UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
-            {
-                Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
-                // ignore CloseMenuFunc
-            }
-            else
-            {
-                Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
-
-                if (Input.GetMouseButtonDown(0))
-                {
-                    SL.Instance.UIManager.CloseBuyMenu();
-                }
+                    _serviceLocator.UIManager.OpenBuyMenu(Input.mousePosition, isOccupied);
             }
         }
+        else
+        {
+            ResetCursor();
+            if (Input.GetMouseButtonDown(0))
+                _serviceLocator.UIManager.CloseBuyMenu();
+        }
+    }
+
+    private void ResetCursor()
+    {
+        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
     }
 }

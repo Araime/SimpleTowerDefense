@@ -1,44 +1,31 @@
 using UnityEngine;
-
-using SL = ServiceLocator;
+using UnityEngine.EventSystems;
 
 public class TowerPoint : MonoBehaviour
 {
-    [SerializeField] bool _isOccupied = false;
+    [Header("Data")]
+    [SerializeField] private bool _isOccupied;
+    public bool IsOccupied => _isOccupied;
+    
+    [Header("Settings")]
+    [SerializeField] private Color _freeColor = Color.green;
+    [SerializeField] private Color _occupiedColor = Color.yellow;
+
+    private readonly Color _defaultColor = Color.white;
+    
     private Renderer _renderer;
 
-    private void Start()
+    void Start()
     {
         _renderer = GetComponent<Renderer>();
     }
 
     void OnMouseOver()
     {
-        if (!UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
-        {
-            if (!_isOccupied)
-            {
-                _renderer.material.color = Color.green;
-            }
-            else
-            {
-                _renderer.material.color = Color.yellow;
-            }
-        }
-        else
-        {
-            _renderer.material.color = Color.white;
-        }
+        if (EventSystem.current.IsPointerOverGameObject()) return;
+        
+        _renderer.material.color = _isOccupied ? _occupiedColor : _freeColor;
     }
 
-    void OnMouseExit()
-    {
-        _renderer.material.color = Color.white;
-    }
-
-    /// <summary>
-    /// Returns the state of the tower point
-    /// </summary>
-    /// <returns></returns>
-    public bool GetTowerPointStatus() => _isOccupied;
+    void OnMouseExit() => _renderer.material.color = _defaultColor;
 }

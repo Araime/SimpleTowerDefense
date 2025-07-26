@@ -4,42 +4,26 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] private GameObject _buyMenuPrefab;
     [SerializeField] private Canvas _canvas;
-    private bool _showMenu = false;
-    private GameObject _buyMenu;
+    
+    private GameObject _activeMenu;
+    public bool IsMenuOpen { get; private set; }
 
-    /// <summary>
-    /// Open the shopping menu
-    /// </summary>
-    /// <param name="pos"></param>
-    public void CallBuyMenu(Vector3 pos, bool isOccupied)
+    /// <summary>Opens buy menu at specified screen position</summary>
+    public void OpenBuyMenu(Vector3 position, bool isOccupied)
     {
-        _buyMenu = Instantiate(_buyMenuPrefab);
-        _buyMenu.transform.SetParent(_canvas.transform, false);
-        _buyMenu.transform.SetPositionAndRotation(pos, Quaternion.identity);
-        _buyMenu.GetComponent<BuyMenu>().Init(isOccupied);
-        ChangeMenuStatus();
+        if (_activeMenu != null) return;
+        
+        _activeMenu = Instantiate(_buyMenuPrefab, position, Quaternion.identity, _canvas.transform);
+        _activeMenu.GetComponent<BuyMenu>().Init(isOccupied);
+        IsMenuOpen = true;
     }
 
-    /// <summary>
-    /// Close the shopping menu
-    /// </summary>
+    /// <summary>Closes currently open buy menu</summary>
     public void CloseBuyMenu()
     {
-        Destroy(_buyMenu);
-        ChangeMenuStatus();
+        if (_activeMenu == null) return;
+        
+        Destroy(_activeMenu);
+        IsMenuOpen = false;
     }
-
-    /// <summary>
-    /// Flip the status
-    /// </summary>
-    private void ChangeMenuStatus()
-    {
-        _showMenu = !_showMenu;
-    }
-
-    /// <summary>
-    /// Returns the menu status
-    /// </summary>
-    /// <returns></returns>
-    public bool GetMenuStatus() => _showMenu;
 }
